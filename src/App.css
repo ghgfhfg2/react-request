@@ -1,38 +1,20 @@
-.App {
-  text-align: center;
-}
+@charset "UTF-8";
+/* 인풋 */
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700&display=swap");
+body {
+  margin: 0;
+  font-weight: 300;
+  font-family: "Noto Sans KR", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale; }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.ant-upload-list {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
+  flex-wrap: wrap; }
 
-.App-link {
-  color: #61dafb;
-}
+.ant-upload-list .ant-upload-list-picture-container {
+  width: calc(33.33% - 8px);
+  margin-right: 12px; }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
+.ant-upload-list .ant-upload-list-picture-container:nth-child(3n+3) {
+  margin-right: 0; }

@@ -1,0 +1,89 @@
+import React, { useState } from 'react'
+import { useForm } from 'react-hook-form';
+import axios from 'axios'
+import { Upload, Button } from 'antd';
+import { UploadOutlined } from '@ant-design/icons';
+import { API_URL } from 'Config'
+
+function Write() {
+    const { register, handleSubmit, errors } = useForm();
+
+    const [FileList, setFileList] = useState()
+    const handleUpload = ({ fileList }) => {
+        console.log(fileList.length)
+        console.log('fileList', fileList);
+        setFileList(fileList)
+    }
+
+    const [File_1, setFile_1] = useState()
+    const onFileChange = (e) => {
+        const val = e.target.files[0]
+        console.log(val)
+        setFile_1(val)
+    }   
+    const [File_2, setFile_2] = useState()
+    const onFileChange2 = (e) => {
+        const val = e.target.files[0]
+        console.log(val)
+        setFile_2(val)
+    }  
+    const onSubmit = (e) => {
+        e.preventDefault();
+        let body = {
+            bf_file : e.target.bf_file
+        }
+
+        console.log(body.bf_file)
+        return;
+    }
+
+    const onSubmit2 = data => {
+        data.preventDefault();
+        const formData = new FormData();
+        formData.append("bf_file[]",File_1);
+        formData.append("bf_file[]",File_2);
+        const config = {
+            headers: {
+              "content-type": "multipart/form-data"
+            }
+          };
+        console.log(formData)
+        axios.post(`${API_URL}/Backend/handling.php`,formData,config)
+        .then(res => {
+            console.log(res)
+        })
+        /*
+        let body = {...data};
+        console.log(body)
+        axios.post(`${API_URL}/Backend/handling.php`,body)
+        .then(res => {
+            console.log(res)
+        })
+        errors && console.error(errors)
+        */
+    };
+
+
+    return (
+        <>
+            <form onSubmit={onSubmit2}>
+            <input type="text" placeholder="제목" name="title" ref={register({required: true})} />
+            <input type="text" placeholder="내용" name="desc" ref={register({required: true})} />
+            <input type="file" onChange={onFileChange} name="bf_file" id="bf_file_1" />
+            <input type="file" onChange={onFileChange2} name="bf_file" id="bf_file_2" />
+            <Upload
+                beforeUpload={() => false}
+                listType="picture"
+                className="upload-list-inline"
+                onChange={handleUpload}
+                maxCount={5}
+            >
+            <Button icon={<UploadOutlined />}>Upload</Button>
+            </Upload>
+            <input type="submit" />
+            </form>
+        </>
+    )
+}
+
+export default Write

@@ -1,0 +1,17 @@
+@import "common.scss";
+
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700&display=swap");
+body {
+  margin: 0;
+  font-weight: 300;
+  font-family: "Noto Sans KR", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale; }
+
+  .ant-upload-list{
+      display: flex;flex-wrap:wrap;
+      .ant-upload-list-picture-container{
+          width: calc(33.33% - 8px);margin-right: 12px;
+          &:nth-child(3n+3){margin-right: 0;}
+      }
+  }
